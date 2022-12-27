@@ -40,4 +40,4 @@ jobs:
           push: true
           tags: |
             axelvanherle/iotproject1:latest
-            ghcr.io/axelvanherle/iotproject1UDPClient:latest
+            ghcr.io/axelvanherle/iotproject1udpclient:latest
