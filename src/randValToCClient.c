@@ -23,12 +23,19 @@
 
 int main()
 {
+	char IP[] = "000.000.000.000";
+	char Port[] = "00000";
 	// Uncomment if youre working on a windows machine to test.
 	/*
 	WSADATA wsaData;
 	WSAStartup( MAKEWORD(2,0), &wsaData );
 	*/
-
+	printf("Enter IP: ");
+	scanf("%s", IP);
+	
+	printf("Enter Port: ");
+	scanf("%s", Port);
+	
 	// Initialization
 	srand(time(0));
 	struct addrinfo internet_address_setup;
@@ -36,7 +43,7 @@ int main()
 	memset(&internet_address_setup, 0, sizeof internet_address_setup);
 	internet_address_setup.ai_family = AF_INET;
 	internet_address_setup.ai_socktype = SOCK_DGRAM;
-	getaddrinfo("127.0.0.1", "24042", &internet_address_setup, &internet_address);
+	getaddrinfo(IP, "24042", &internet_address_setup, &internet_address);
 	// Get me a damn socket! Grrrrrr!
 	int internet_socket;
 	internet_socket = socket(internet_address->ai_family, internet_address->ai_socktype, internet_address->ai_protocol);
