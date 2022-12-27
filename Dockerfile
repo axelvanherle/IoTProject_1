@@ -6,5 +6,5 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     cmake \
     gdb \
     wget
-RUN gcc randValToCClient.c -o randValToCClient
+RUN gcc src/randValToCClient.c -o randValToCClient
 ENTRYPOINT ["./randValToCClient"]
