@@ -1,6 +1,6 @@
 # IoTProject_1
 
-#Show off
+# Show off
 To get a quick look of what this project can do, have a look at our github pages!
 
 # What's what?
