@@ -18,24 +18,24 @@
 #include <unistd.h>		//for close
 #include <stdlib.h>		//for exit
 #include <string.h>		//for memset
-#include <time.h>    	//for rand value
+#include <time.h>		//for rand value
 #endif
 
 int main()
 {
 	char IP[] = "000.000.000.000";
 	char Port[] = "00000";
+
 	// Uncomment if youre working on a windows machine to test.
-	/*
-	WSADATA wsaData;
-	WSAStartup( MAKEWORD(2,0), &wsaData );
-	*/
+	//WSADATA wsaData;
+	//WSAStartup( MAKEWORD(2,0), &wsaData );
+
 	printf("Enter IP: ");
 	scanf("%s", IP);
-	
+
 	printf("Enter Port: ");
 	scanf("%s", Port);
-	
+
 	// Initialization
 	srand(time(0));
 	struct addrinfo internet_address_setup;
@@ -48,8 +48,9 @@ int main()
 	int internet_socket;
 	internet_socket = socket(internet_address->ai_family, internet_address->ai_socktype, internet_address->ai_protocol);
 	char str[8];
-	sprintf(str, "%d", (rand()%100)+1);
-	// Execution
+	sprintf(str, "%d", (rand() % 100) + 1);
+
+	// Send my packet!
 	sendto(internet_socket, str, sizeof(str), 0, internet_address->ai_addr, internet_address->ai_addrlen);
 
 	// Clean up
@@ -57,7 +58,7 @@ int main()
 	close(internet_socket);
 
 	// Uncomment if youre working on a windows machine to test.
-	//WSACleanup();
+	// WSACleanup();
 
 	return 0;
 }
