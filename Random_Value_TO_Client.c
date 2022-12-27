@@ -6,38 +6,31 @@
 #include <netinet/in.h>
 
 #define PORT 12345
-#define Waarde 1024
+#define BUFLEN 1024
 
 int main(void) {
 int sockfd;
-struct sockaddr_in servaddr, cliaddr;
-char buf[Waarde];
-socklen_t len;
+struct sockaddr_in servaddr;
+char buf[BUFLEN];
 
-// socket aangemaakt
+// Maak een socket
 sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 if (sockfd < 0) {
 perror("Aanmaken socket gefaald");
 exit(EXIT_FAILURE);
 }
 
-// socket address initallizeren
+// Initialiseer socket address
 memset(&servaddr, 0, sizeof(servaddr));
 servaddr.sin_family = AF_INET;
-servaddr.sin_addr.s_addr = INADDR_ANY;
 servaddr.sin_port = htons(PORT);
+servaddr.sin_addr.s_addr = INADDR_ANY;
 
-// socket binden aan address
-if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0) {
-perror("Binden gefaald");
-exit(EXIT_FAILURE);
-}
-
-// random waarde sturen naar de client
+// Stuur random waarde naar de server
 while (1) {
 int randval = rand();
 sprintf(buf, "%d", randval);
-sendto(sockfd, buf, strlen(buf), 0, (const struct sockaddr *)&cliaddr, len);
+sendto(sockfd, buf, strlen(buf), 0, (const struct sockaddr *)&servaddr, sizeof(servaddr));
 printf("Stuur random waarde: %d\n", randval);
 sleep(1);
 }
