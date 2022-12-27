@@ -1,4 +1,4 @@
-name: publish-container
+name: publish_udpclient
 
 on:
   push:
