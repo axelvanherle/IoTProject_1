@@ -27,8 +27,8 @@ int main()
 	char Port[] = "00000";
 
 	// Uncomment if youre working on a windows machine to test.
-	//WSADATA wsaData;
-	//WSAStartup( MAKEWORD(2,0), &wsaData );
+	// WSADATA wsaData;
+	// WSAStartup( MAKEWORD(2,0), &wsaData );
 
 	printf("Enter IP: ");
 	scanf("%s", IP);
