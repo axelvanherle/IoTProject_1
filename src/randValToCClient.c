@@ -57,9 +57,7 @@ int main()
 	close(internet_socket);
 
 	// Uncomment if youre working on a windows machine to test.
-	/*
-	WSACleanup();
-	*/
+	//WSACleanup();
 
 	return 0;
 }
