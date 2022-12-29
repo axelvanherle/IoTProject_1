@@ -23,40 +23,49 @@
 
 int main()
 {
+	// This is temporary for testing purposes, the IP and port should be hardcoded.
 	char IP[] = "000.000.000.000";
 	char Port[] = "00000";
+	printf("Enter IP: ");
+	scanf("%s", IP);
+	printf("Enter Port: ");
+	scanf("%s", Port);
 
 	// Uncomment if youre working on a windows machine to test.
 	// WSADATA wsaData;
 	// WSAStartup( MAKEWORD(2,0), &wsaData );
 
-	printf("Enter IP: ");
-	scanf("%s", IP);
-
-	printf("Enter Port: ");
-	scanf("%s", Port);
-
-	// Initialization
+	/*
+	 * Initialization
+	 */
+	// Seed the rand function
 	srand(time(0));
+
+	// Set up the struct
 	struct addrinfo internet_address_setup;
 	struct addrinfo *internet_address = NULL;
 	memset(&internet_address_setup, 0, sizeof internet_address_setup);
+
+	// We want IPV4 and UDP.
 	internet_address_setup.ai_family = AF_INET;
 	internet_address_setup.ai_socktype = SOCK_DGRAM;
-	getaddrinfo(IP, "24042", &internet_address_setup, &internet_address);
+	getaddrinfo(IP, Port, &internet_address_setup, &internet_address);
+
 	// Get me a damn socket! Grrrrrr!
-	int internet_socket;
-	internet_socket = socket(internet_address->ai_family, internet_address->ai_socktype, internet_address->ai_protocol);
-	char str[8];
+	int internet_socket = socket(internet_address->ai_family, internet_address->ai_socktype, internet_address->ai_protocol);
+
+	// Prepare the random value to be sent over UDP.
+	char str[4];
 	sprintf(str, "%d", (rand() % 100) + 1);
 
 	// Send my packet!
-	sendto(internet_socket, str, sizeof(str), 0, internet_address->ai_addr, internet_address->ai_addrlen);
+	sendto(internet_socket, str, strlen(str), 0, internet_address->ai_addr, internet_address->ai_addrlen);
 
-	// Clean up
+	/*
+	 * Clean up
+	 */
 	freeaddrinfo(internet_address);
 	close(internet_socket);
-
 	// Uncomment if youre working on a windows machine to test.
 	// WSACleanup();
 
