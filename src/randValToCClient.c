@@ -6,15 +6,15 @@
 #ifdef _WIN32
 #include <winsock2.h> //for all socket programming
 #include <ws2tcpip.h> //for getaddrinfo, inet_pton, inet_ntop
-#include <unistd.h>	  //for close
+#include <unistd.h> //for close
 #else
 #include <sys/socket.h> //for sockaddr, socket, socket
-#include <sys/types.h>	//for size_t
-#include <netdb.h>		//for getaddrinfo
+#include <sys/types.h> //for size_t
+#include <netdb.h> //for getaddrinfo
 #include <netinet/in.h> //for sockaddr_in
-#include <arpa/inet.h>	//for htons, htonl, inet_pton, inet_ntop
-#include <errno.h>		//for errno
-#include <unistd.h>		//for close
+#include <arpa/inet.h> //for htons, htonl, inet_pton, inet_ntop
+#include <errno.h> //for errno
+#include <unistd.h> //for close
 #endif
 
 int main()
@@ -29,7 +29,7 @@ int main()
 
 	// This is used to we can set how long we want the program to run.
 	// Enter time in seconds.
-	int timeToRun = 5*60;
+	int timeToRun = 5 * 60;
 	// Frequency at which we want to send a packet in seconds.
 	int packetFrequency = 30;
 
@@ -38,7 +38,7 @@ int main()
 
 	// Add a timer to the program.
 	clock_t timer_start, timer_end;
-    timer_start = clock();
+	timer_start = clock();
 
 	while (timeToRun >= packetFrequency)
 	{
@@ -74,9 +74,9 @@ int main()
 		close(internet_socket);
 
 		#ifdef _WIN32
-				WSACleanup();
+			WSACleanup();
 		#else
-		// Empty for linux.
+			// Empty for linux.
 		#endif
 
 		timeToRun -= packetFrequency;
@@ -84,7 +84,7 @@ int main()
 	}
 
 	timer_end = clock(); // End the timer.
-    double time_spent = (double)(timer_end - timer_start) / CLOCKS_PER_SEC;
-    printf("\nProgram stopped, it ran for %.3fs.\n", time_spent);
+	double time_spent = (double)(timer_end - timer_start) / CLOCKS_PER_SEC;
+	printf("\nProgram stopped, it ran for %.3fs.\n", time_spent);
 	return 0;
 }
