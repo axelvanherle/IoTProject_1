@@ -4,17 +4,17 @@
 #include <time.h>
 
 #ifdef _WIN32
-#include <winsock2.h>		//for all socket programming
-#include <ws2tcpip.h>		//for getaddrinfo, inet_pton, inet_ntop
-#include <unistd.h>			//for close
-#else	
-#include <sys/socket.h> 	//for sockaddr, socket, socket
-#include <sys/types.h>		//for size_t
-#include <netdb.h>			//for getaddrinfo
-#include <netinet/in.h> 	//for sockaddr_in
-#include <arpa/inet.h>		//for htons, htonl, inet_pton, inet_ntop
-#include <errno.h>			//for errno
-#include <unistd.h>			//for close
+#include <winsock2.h>	//for all socket programming
+#include <ws2tcpip.h>	//for getaddrinfo, inet_pton, inet_ntop
+#include <unistd.h>		//for close
+#else
+#include <sys/socket.h> //for sockaddr, socket, socket
+#include <sys/types.h>	//for size_t
+#include <netdb.h>		//for getaddrinfo
+#include <netinet/in.h> //for sockaddr_in
+#include <arpa/inet.h>	//for htons, htonl, inet_pton, inet_ntop
+#include <errno.h>		//for errno
+#include <unistd.h>		//for close
 #endif
 
 int main()
