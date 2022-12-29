@@ -43,10 +43,10 @@ int main()
 	while (timeToRun >= packetFrequency)
 	{
 		#ifdef _WIN32
-				WSADATA wsaData;
-				WSAStartup(MAKEWORD(2, 0), &wsaData);
+			WSADATA wsaData;
+			WSAStartup(MAKEWORD(2, 0), &wsaData);
 		#else
-				// Empty for linux.
+			// Empty for linux.
 		#endif
 
 		// Set up the struct
