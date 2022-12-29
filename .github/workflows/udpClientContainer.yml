@@ -7,8 +7,8 @@ on:
     paths:
       - 'src/randValToCClient.c'
       
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+concurrency: 
+  group: ${{ github.head_ref }}
   cancel-in-progress: true
 
 jobs:
