@@ -1,24 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
 #ifdef _WIN32
-#define _WIN32_WINNT _WIN32_WINNT_WIN7 // select minimal legacy support, needed for inet_pton, inet_ntop
-#include <winsock2.h>				   //for all socket programming
-#include <ws2tcpip.h>				   //for getaddrinfo, inet_pton, inet_ntop
-#include <stdio.h>					   //for fprintf
-#include <unistd.h>					   //for close
-#include <stdlib.h>					   //for exit
-#include <string.h>					   //for memset
-#include <time.h>					   //for rand value
-#else
-#include <sys/socket.h> //for sockaddr, socket, socket
-#include <sys/types.h>	//for size_t
-#include <netdb.h>		//for getaddrinfo
-#include <netinet/in.h> //for sockaddr_in
-#include <arpa/inet.h>	//for htons, htonl, inet_pton, inet_ntop
-#include <errno.h>		//for errno
-#include <stdio.h>		//for fprintf, perror
-#include <unistd.h>		//for close
-#include <stdlib.h>		//for exit
-#include <string.h>		//for memset
-#include <time.h>		//for rand value
+#include <winsock2.h>		//for all socket programming
+#include <ws2tcpip.h>		//for getaddrinfo, inet_pton, inet_ntop
+#include <unistd.h>			//for close
+#else	
+#include <sys/socket.h> 	//for sockaddr, socket, socket
+#include <sys/types.h>		//for size_t
+#include <netdb.h>			//for getaddrinfo
+#include <netinet/in.h> 	//for sockaddr_in
+#include <arpa/inet.h>		//for htons, htonl, inet_pton, inet_ntop
+#include <errno.h>			//for errno
+#include <unistd.h>			//for close
 #endif
 
 int main()
@@ -31,13 +27,13 @@ int main()
 	printf("Enter Port: ");
 	scanf("%s", Port);
 
-	// Uncomment if youre working on a windows machine to test.
-	// WSADATA wsaData;
-	// WSAStartup( MAKEWORD(2,0), &wsaData );
+	#ifdef _WIN32
+	WSADATA wsaData;
+	WSAStartup( MAKEWORD(2,0), &wsaData );
+	#else
+	// Empty for linux.
+	#endif
 
-	/*
-	 * Initialization
-	 */
 	// Seed the rand function
 	srand(time(0));
 
@@ -61,13 +57,16 @@ int main()
 	// Send my packet!
 	sendto(internet_socket, str, strlen(str), 0, internet_address->ai_addr, internet_address->ai_addrlen);
 
-	/*
-	 * Clean up
-	 */
+	// Clean up
 	freeaddrinfo(internet_address);
 	close(internet_socket);
-	// Uncomment if youre working on a windows machine to test.
-	// WSACleanup();
 
+	// Uncomment if you're working on a windows machine to test.
+	#ifdef _WIN32
+	WSACleanup();
+	#else
+	// Empty for linux.
+	#endif
+	
 	return 0;
 }
