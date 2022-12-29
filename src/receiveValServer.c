@@ -39,11 +39,11 @@ void *sendThread()
 	// This is temporary for testing purposes, the IP and port should be hardcoded.
 	char IP[] = "000.000.000.000";
 	char Port[] = "00000";
-	printf("Enter IP: ");
+	printf("Enter IP to send to: ");
 	scanf("%s", IP);
-	printf("Enter Port: ");
+	printf("Enter Port to send to: ");
 	scanf("%s", Port);
-	
+
 	while (1)
 	{
 		if (counter == 2)
@@ -68,8 +68,11 @@ void *sendThread()
 			int internet_socket;
 			internet_socket = socket(internet_address->ai_family, internet_address->ai_socktype, internet_address->ai_protocol);
 
-			sendto(internet_socket, "Hello UDP world!", 16, 0, internet_address->ai_addr, internet_address->ai_addrlen);
-			printf("\n========%d\n========\n", avgVal);
+			char buffer[] = "0000";
+			sprintf(buffer, "%d", avgVal);
+
+			sendto(internet_socket, buffer, strlen(buffer), 0, internet_address->ai_addr, internet_address->ai_addrlen);
+			printf("\n========\n%d\n========\n", avgVal);
 			freeaddrinfo(internet_address);
 			close(internet_socket);
 
