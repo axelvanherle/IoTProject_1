@@ -5,7 +5,7 @@ on:
     branches:
       - "main"
     paths:
-      - 'src/randValToCClient.c'
+      - 'src/client/randValToCClient.c'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -41,7 +41,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: src/client
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: |
