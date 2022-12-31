@@ -105,6 +105,7 @@ void *receiveThread()
 
 int main(int argc, char *argv[])
 {
+	printf("Welcome to receiveValServer.");
 	// Initialization
 	#ifdef _WIN32
 		OSInit();
