@@ -45,5 +45,5 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: |
-            axelvanherle/iotproject1:iotproject1udpclient
+            axelvanherle/iotproject1:latest
             ghcr.io/axelvanherle/iotproject1udpclient:latest
