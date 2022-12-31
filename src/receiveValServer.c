@@ -48,8 +48,6 @@ void *sendThread()
 	{
 		if (counter == 2)
 		{
-			counter = 0;
-			avgVal = 0;
 			#ifdef _WIN32
 				WSADATA wsaData;
 				WSAStartup(MAKEWORD(2, 0), &wsaData);
@@ -69,10 +67,10 @@ void *sendThread()
 			internet_socket = socket(internet_address->ai_family, internet_address->ai_socktype, internet_address->ai_protocol);
 
 			char buffer[] = "0000";
-			sprintf(buffer, "%d", avgVal);
+			sprintf(buffer, "%d", avgVal/2);
 
 			sendto(internet_socket, buffer, strlen(buffer), 0, internet_address->ai_addr, internet_address->ai_addrlen);
-			printf("\n========\n%d\n========\n", avgVal);
+			printf("\n========\nSENT %d TO %s ON %s\n========\n", avgVal/2,IP,Port);
 			freeaddrinfo(internet_address);
 			close(internet_socket);
 
@@ -81,6 +79,8 @@ void *sendThread()
 			#else
 				// nothing on linux
 			#endif
+			counter = 0;
+			avgVal = 0;
 		}
 		else if (counter > 2)
 		{
