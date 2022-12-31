@@ -2,7 +2,6 @@
 #include <unistd.h> //for close
 #include <stdlib.h> //for exit
 #include <string.h> //for memset
-#include <pthread.h>
 
 #ifdef _WIN32
 #include <winsock2.h> //for all socket programming
