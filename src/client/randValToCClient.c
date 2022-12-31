@@ -19,7 +19,7 @@
 
 int main()
 {
-	printf("Welcome to randValToCClient.");
+	printf("Welcome to randValToCClient.\n");
 	// This is temporary for testing purposes, the IP and port should be hardcoded.
 	char IP[] = "000.000.000.000";
 	char Port[] = "00000";
