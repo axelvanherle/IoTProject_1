@@ -17,8 +17,6 @@
 #include <unistd.h> //for close
 #endif
 
-//test
-
 int main()
 {
 	// This is temporary for testing purposes, the IP and port should be hardcoded.
