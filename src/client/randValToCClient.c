@@ -3,8 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-//
-
 #ifdef _WIN32
 #include <winsock2.h> //for all socket programming
 #include <ws2tcpip.h> //for getaddrinfo, inet_pton, inet_ntop
