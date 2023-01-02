@@ -15,7 +15,7 @@
 #include <arpa/inet.h> //for htons, htonl, inet_pton, inet_ntop
 #include <errno.h> //for errno
 #include <unistd.h> //for close
-
+#endif
 
 int main()
 {
