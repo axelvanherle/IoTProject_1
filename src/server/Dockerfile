@@ -6,5 +6,5 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
     cmake \
     gdb \
     wget
-RUN gcc receiveValServer.c  -o receiveValServer
+RUN gcc -pthread receiveValServer.c  -o receiveValServer
 ENTRYPOINT ["./receiveValServer"]
