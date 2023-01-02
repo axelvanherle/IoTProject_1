@@ -109,8 +109,9 @@ int main(int argc, char *argv[])
 	// Initialization
 	#ifdef _WIN32
 		OSInit();
+		system("ipconfig");
 	#else
-	// Do nothing on linux
+		system("hostname -I");
 	#endif
 
 	// Create my threads and run those suckers.
