@@ -38,7 +38,7 @@ void *sendThread()
 {
 	// This is temporary for testing purposes, the IP and port should be hardcoded.
 	char IP[] = "84.26.5.174";
-	char Port[] = "24042";
+	char Port[] = "24043";
 
 	while (1)
 	{
