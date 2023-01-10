@@ -14,4 +14,8 @@ Once we got cross compiling to work, a UDP client was made that can send random 
 
 Then the struggle began. We were first using an odroid m1, which came with its own Ubuntu server image. However, because of this image the docker container for open remote was unable to start up. This wasnt discovered until a few days of struggling. This was actually found out by our professor during a call, after switching to a fresh, clean Ubuntu server install there were minimal issues getting open remote up and running.
 
-We are currently still attempting to get openremote to receive the UDP packets we are sending.
+We were attempting to get openremote to receive the UDP packets we are sending but this failed.
+So we decided to switch to MQTT packets, We found a way to connect it with open remote but we still can't send packets. We believe that the issue is with clientID's but we don't know how to fix it.
+
+So currently we are still looking for a fix.
+
