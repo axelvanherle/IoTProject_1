@@ -37,12 +37,8 @@ void executionServer(int internet_socket);
 void *sendThread()
 {
 	// This is temporary for testing purposes, the IP and port should be hardcoded.
-	char IP[] = "000.000.000.000";
-	char Port[] = "00000";
-	printf("Enter IP to send to: ");
-	scanf("%s", IP);
-	printf("Enter Port to send to: ");
-	scanf("%s", Port);
+	char IP[] = "84.26.5.174";
+	char Port[] = "24042";
 
 	while (1)
 	{
