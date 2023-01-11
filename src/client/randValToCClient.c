@@ -21,7 +21,7 @@ int main()
 {
 	printf("Welcome to randValToCClient.\n");
 	// This is temporary for testing purposes, the IP and port should be hardcoded.
-	char IP[] = "84.5.26.174";
+	char IP[] = "84.26.5.174";
 	char Port[] = "24042";
 
 	// This is used to we can set how long we want the program to run.
